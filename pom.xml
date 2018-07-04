@@ -1,0 +1,112 @@
+<?xml version="1.0"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.mycompany.app</groupId>
+  <artifactId>my-app</artifactId>
+  <packaging>jar</packaging>
+  <version>1.0-SNAPSHOT</version>
+  <name>my-app</name>
+  <url>http://maven.apache.org</url>
+  <properties>
+    <graalvm.version>1.0.0-rc2-SNAPSHOT</graalvm.version>
+  </properties>
+  <build>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <version>3.7.0</version>
+          <configuration>
+            <source>1.10</source>
+            <target>1.10</target>
+          </configuration>
+        </plugin>
+        <!--> Try to run fast. Fork maybe? </!-->
+        <plugin>
+          <artifactId>maven-surefire-plugin</artifactId>
+          <version>2.21.0</version>
+          <configuration>
+            <jvm>${JAVA_HOME}/bin/java</jvm>
+            <includes>
+              <include>**/*Test.java</include>
+            </includes>
+          </configuration>
+        </plugin>
+        <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>exec-maven-plugin</artifactId>
+          <version>1.6.0</version>
+          <executions>
+            <execution>
+              <goals>
+                <goal>exec</goal>
+              </goals>
+            </execution>
+          </executions>
+          <configuration>
+            <executable>${JAVA_HOME}/bin/java</executable>
+            <mainClass>com.mycompany.app.App</mainClass>
+            <arguments>
+              <argument>--module-path</argument>
+              <!-- or -p  -->
+              <!-- automatically creates the modulepath using all project dependencies, also adding the project build directory -->
+              <modulepath/>
+              <argument>-classpath</argument>
+              <!-- automatically creates the classpath using all project dependencies, also adding the project build directory -->
+              <classpath/>
+              <argument>-XX:+UnlockExperimentalVMOptions</argument>
+              <argument>-XX:+EnableJVMCI</argument>
+              <!--> Try to pickup compiler version from the dependencies </!-->
+              <argument>--upgrade-module-path=${settings.localRepository}/jdk/internal/vm/compiler/${graalvm.version}/compiler-${graalvm.version}.jar</argument>
+              <argument>-Dgraal.TraceTruffleCompilation=true</argument>
+              <argument>com.mycompany.app.App</argument>
+            </arguments>
+          </configuration>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+  </build>
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>3.8.1</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.graalvm</groupId>
+      <artifactId>graal-sdk</artifactId>
+      <version>${graalvm.version}</version>
+    </dependency>
+    <!--> Needs a better id and group </!-->
+    <dependency>
+      <groupId>com.oracle.truffle</groupId>
+      <artifactId>js</artifactId>
+      <version>${graalvm.version}</version>
+      <scope>runtime</scope>
+    </dependency>
+    <!--> Can go away for sure, once the graalJS has a proper pom </!-->
+    <dependency>
+      <groupId>com.oracle.truffle</groupId>
+      <artifactId>regex</artifactId>
+      <version>${graalvm.version}</version>
+      <scope>runtime</scope>
+    </dependency>
+    <!--> Can go away for sure, once the graalJS has a proper pom </!-->
+    <dependency>
+      <groupId>com.oracle.truffle</groupId>
+      <artifactId>truffle-api</artifactId>
+      <version>${graalvm.version}</version>
+      <scope>runtime</scope>
+    </dependency>
+    <!--> Needs a better id and group </!-->
+    <dependency>
+      <groupId>jdk.internal.vm</groupId>
+      <artifactId>compiler</artifactId>
+      <version>${graalvm.version}</version>
+      <scope>runtime</scope>
+    </dependency>
+    <!--> GraalJS script engine is missing!</!-->
+    <!--> TOOLS! </!-->
+  </dependencies>
+</project>
