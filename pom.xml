@@ -45,10 +45,8 @@
           </executions>
           <configuration>
             <executable>${JAVA_HOME}/bin/java</executable>
-            <mainClass>com.mycompany.app.App</mainClass>
             <arguments>
               <argument>--module-path</argument>
-              <!-- or -p  -->
               <!-- automatically creates the modulepath using all project dependencies, also adding the project build directory -->
               <modulepath/>
               <argument>-classpath</argument>
@@ -56,7 +54,6 @@
               <classpath/>
               <argument>-XX:+UnlockExperimentalVMOptions</argument>
               <argument>-XX:+EnableJVMCI</argument>
-              <!--> Try to pickup compiler version from the dependencies </!-->
               <argument>--upgrade-module-path=${settings.localRepository}/jdk/internal/vm/compiler/${graalvm.version}/compiler-${graalvm.version}.jar</argument>
               <argument>-Dgraal.TraceTruffleCompilation=true</argument>
               <argument>com.mycompany.app.App</argument>
