@@ -9,7 +9,7 @@ import org.graalvm.polyglot.Value;
  */
 public class App {
 	public static void main(String[] args) {
-		System.out.println(Context.newBuilder("js").build().eval("js", "var g = 0; "
+		System.out.println(Context.newBuilder("js").option("cpusampler", "true").build().eval("js", "var g = 0; "
 				+ "function foo(){ "
 				+ "  for (i = 0; i < 500000; i++) {"
 				+ "    g = g+i;"
@@ -23,6 +23,6 @@ public class App {
 	}
 	
 	public static Value test(String[] args) {
-		return Context.newBuilder("js").build().eval("js", "42");
+		return Context.newBuilder("js").option("cpusampler", "true").build().eval("js", "42");
 	}
 }
