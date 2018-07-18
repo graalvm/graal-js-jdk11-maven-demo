@@ -106,7 +106,23 @@
       <version>${graalvm.version}</version>
       <scope>runtime</scope>
     </dependency>
-    <!--> GraalJS script engine is missing!</!-->
-    <!--> TOOLS! </!-->
+    <dependency>
+      <groupId>com.oracle.graal.js</groupId>
+      <artifactId>scriptengine</artifactId>
+      <version>${graalvm.version}</version>
+      <scope>runtime</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.oracle.truffle.tools</groupId>
+      <artifactId>profiler</artifactId>
+      <version>${graalvm.version}</version>
+      <scope>runtime</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.oracle.truffle.tools</groupId>
+      <artifactId>chromeinspector</artifactId>
+      <version>${graalvm.version}</version>
+      <scope>runtime</scope>
+    </dependency>
   </dependencies>
 </project>
