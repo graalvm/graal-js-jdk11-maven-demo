@@ -8,7 +8,7 @@
   <name>my-app</name>
   <url>http://maven.apache.org</url>
   <properties>
-    <graalvm.version>1.0.0-rc2-SNAPSHOT</graalvm.version>
+    <graalvm.version>1.0.0-rc8-SNAPSHOT</graalvm.version>
   </properties>
   <build>
     <pluginManagement>
@@ -75,28 +75,12 @@
       <artifactId>graal-sdk</artifactId>
       <version>${graalvm.version}</version>
     </dependency>
-    <!--> Needs a better id and group </!-->
     <dependency>
-      <groupId>com.oracle.truffle</groupId>
+      <groupId>org.graalvm.js</groupId>
       <artifactId>js</artifactId>
       <version>${graalvm.version}</version>
       <scope>runtime</scope>
     </dependency>
-    <!--> Can go away for sure, once the graalJS has a proper pom </!-->
-    <dependency>
-      <groupId>com.oracle.truffle</groupId>
-      <artifactId>regex</artifactId>
-      <version>${graalvm.version}</version>
-      <scope>runtime</scope>
-    </dependency>
-    <!--> Can go away for sure, once the graalJS has a proper pom </!-->
-    <dependency>
-      <groupId>com.oracle.truffle</groupId>
-      <artifactId>truffle-api</artifactId>
-      <version>${graalvm.version}</version>
-      <scope>runtime</scope>
-    </dependency>
-    <!--> Needs a better id and group </!-->
     <dependency>
       <groupId>jdk.internal.vm</groupId>
       <artifactId>compiler</artifactId>
@@ -104,14 +88,8 @@
       <scope>runtime</scope>
     </dependency>
     <dependency>
-      <groupId>com.oracle.graal.js</groupId>
-      <artifactId>scriptengine</artifactId>
-      <version>${graalvm.version}</version>
-      <scope>runtime</scope>
-    </dependency>
-    <dependency>
       <groupId>com.oracle.truffle.tools</groupId>
-      <artifactId>profiler</artifactId>
+      <artifactId>truffle-profiler</artifactId>
       <version>${graalvm.version}</version>
       <scope>runtime</scope>
     </dependency>
