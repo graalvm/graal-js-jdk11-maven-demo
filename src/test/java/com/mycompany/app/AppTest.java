@@ -8,7 +8,7 @@ import junit.framework.TestSuite;
 /**
  * Unit test for simple App.
  */
-public class AppTest 
+public class AppTest
     extends TestCase
 {
     /**
@@ -34,7 +34,7 @@ public class AppTest
      */
     public void testApp()
     {
-    	var a = App.test(null);
+    	var a = App.test();
     	Assert.assertTrue(a.isNumber());
     }
 }

@@ -21,8 +21,8 @@ public class App {
 				+ "g"));
 		System.out.println("Hello World!");
 	}
-	
-	public static Value test(String[] args) {
+
+	public static Value test() {
 		return Context.newBuilder("js").option("cpusampler", "true").build().eval("js", "42");
 	}
 }
