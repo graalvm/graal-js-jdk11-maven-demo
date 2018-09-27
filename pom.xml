@@ -21,7 +21,6 @@
             <target>1.10</target>
           </configuration>
         </plugin>
-        <!--> Try to run fast. Fork maybe? </!-->
         <plugin>
           <artifactId>maven-surefire-plugin</artifactId>
           <version>2.21.0</version>
@@ -30,6 +29,9 @@
             <includes>
               <include>**/*Test.java</include>
             </includes>
+            <classpathDependencyExcludes>
+                <classpathDependencyExclude>jdk.internal.vm:compiler</classpathDependencyExclude>
+            </classpathDependencyExcludes>
           </configuration>
         </plugin>
         <plugin>
