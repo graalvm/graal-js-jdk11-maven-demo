@@ -34,7 +34,6 @@ public class AppTest
      */
     public void testApp()
     {
-    	var a = App.test();
-    	Assert.assertTrue(a.isNumber());
+    	Assert.assertTrue(App.get42().isNumber());
     }
 }

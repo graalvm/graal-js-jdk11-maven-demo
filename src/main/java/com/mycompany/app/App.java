@@ -8,21 +8,14 @@ import org.graalvm.polyglot.Value;
  *
  */
 public class App {
+
 	public static void main(String[] args) {
-		System.out.println(Context.newBuilder("js").option("cpusampler", "true").build().eval("js", "var g = 0; "
-				+ "function foo(){ "
-				+ "  for (i = 0; i < 500000; i++) {"
-				+ "    g = g+i;"
-				+ "  }"
-				+ "}"
-				+ "for (j = 0; j < 1000; j++) { "
-				+ "  foo();"
-				+ "} "
-				+ "g"));
-		System.out.println("Hello World!");
+        System.out.println("Hello Java!");
+        Context context = Context.create();
+        context.eval("js", "print('Hello JavaScript!');");
 	}
 
-	public static Value test() {
-		return Context.newBuilder("js").option("cpusampler", "true").build().eval("js", "42");
+	public static Value get42() {
+            return Context.create().eval("js", "42");
 	}
 }
