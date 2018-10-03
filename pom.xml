@@ -30,7 +30,7 @@
               <include>**/*Test.java</include>
             </includes>
             <classpathDependencyExcludes>
-                <classpathDependencyExclude>jdk.internal.vm:compiler</classpathDependencyExclude>
+              <classpathDependencyExclude>org.graalvm:compiler</classpathDependencyExclude>
             </classpathDependencyExcludes>
           </configuration>
         </plugin>
@@ -56,7 +56,7 @@
               <classpath/>
               <argument>-XX:+UnlockExperimentalVMOptions</argument>
               <argument>-XX:+EnableJVMCI</argument>
-              <argument>--upgrade-module-path=${settings.localRepository}/jdk/internal/vm/compiler/${graalvm.version}/compiler-${graalvm.version}.jar</argument>
+              <argument>--upgrade-module-path=${settings.localRepository}/org/graalvm/compiler/${graalvm.version}/compiler-${graalvm.version}.jar</argument>
               <argument>-Dgraal.TraceTruffleCompilation=true</argument>
               <argument>com.mycompany.app.App</argument>
             </arguments>
@@ -84,19 +84,19 @@
       <scope>runtime</scope>
     </dependency>
     <dependency>
-      <groupId>jdk.internal.vm</groupId>
+      <groupId>org.graalvm</groupId>
       <artifactId>compiler</artifactId>
       <version>${graalvm.version}</version>
       <scope>runtime</scope>
     </dependency>
     <dependency>
-      <groupId>com.oracle.truffle.tools</groupId>
-      <artifactId>truffle-profiler</artifactId>
+      <groupId>org.graalvm.tools</groupId>
+      <artifactId>profiler</artifactId>
       <version>${graalvm.version}</version>
       <scope>runtime</scope>
     </dependency>
     <dependency>
-      <groupId>com.oracle.truffle.tools</groupId>
+      <groupId>org.graalvm.tools</groupId>
       <artifactId>chromeinspector</artifactId>
       <version>${graalvm.version}</version>
       <scope>runtime</scope>
