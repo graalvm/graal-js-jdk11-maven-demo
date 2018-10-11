@@ -9,13 +9,13 @@ import org.graalvm.polyglot.Value;
  */
 public class App {
 
-	public static void main(String[] args) {
+    public static void main(String[] args) {
         System.out.println("Hello Java!");
         Context context = Context.create();
-        context.eval("js", "print('Hello JavaScript!');");
-	}
+            context.eval("js", "print('Hello JavaScript!');");
+        }
 
-	public static Value get42() {
-            return Context.create().eval("js", "42");
-	}
+    public static Value get42() {
+        return Context.create().eval("js", "42");
+    }
 }
