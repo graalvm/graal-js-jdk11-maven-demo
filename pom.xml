@@ -30,7 +30,7 @@
                             <include>**/*Test.java</include>
                         </includes>
                         <classpathDependencyExcludes>
-                            <classpathDependencyExclude>org.graalvm:compiler</classpathDependencyExclude>
+                            <classpathDependencyExclude>org.graalvm.compiler:compiler</classpathDependencyExclude>
                         </classpathDependencyExcludes>
                     </configuration>
                 </plugin>
@@ -104,7 +104,7 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>org.graalvm</groupId>
+            <groupId>org.graalvm.sdk</groupId>
             <artifactId>graal-sdk</artifactId>
             <version>${graalvm.version}</version>
         </dependency>
@@ -115,7 +115,7 @@
             <scope>runtime</scope>
         </dependency>
         <dependency>
-            <groupId>org.graalvm</groupId>
+            <groupId>org.graalvm.compiler</groupId>
             <artifactId>compiler</artifactId>
             <version>${graalvm.version}</version>
             <scope>runtime</scope>
