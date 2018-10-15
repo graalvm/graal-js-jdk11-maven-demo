@@ -35,6 +35,33 @@
                     </configuration>
                 </plugin>
                 <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-dependency-plugin</artifactId>
+                    <version>2.10</version>
+                    <executions>
+                        <execution>
+                            <id>copy</id>
+                            <phase>package</phase>
+                            <goals>
+                                <goal>copy</goal>
+                            </goals>
+                            <configuration>
+                                <artifactItems>
+                                    <artifactItem>
+                                        <groupId>org.graalvm</groupId>
+                                        <artifactId>compiler</artifactId>
+                                        <version>${graalvm.version}</version>
+                                        <type>jar</type>
+                                        <overWrite>true</overWrite>
+                                        <destFileName>compiler-${graalvm.version}.jar</destFileName>
+                                    </artifactItem>
+                                </artifactItems>
+                                <outputDirectory>${project.build.directory}</outputDirectory>
+                            </configuration>
+                        </execution>
+                    </executions>
+                </plugin>
+                <plugin>
                     <groupId>org.codehaus.mojo</groupId>
                     <artifactId>exec-maven-plugin</artifactId>
                     <version>1.6.0</version>
@@ -56,13 +83,18 @@
                             <classpath/>
                             <argument>-XX:+UnlockExperimentalVMOptions</argument>
                             <argument>-XX:+EnableJVMCI</argument>
-                            <argument>--upgrade-module-path=${settings.localRepository}/org/graalvm/compiler/${graalvm.version}/compiler-${graalvm.version}.jar</argument>
+                            <argument>--upgrade-module-path=${project.build.directory}/compiler-${graalvm.version}.jar</argument>
                             <argument>com.mycompany.app.App</argument>
                         </arguments>
                     </configuration>
                 </plugin>
             </plugins>
         </pluginManagement>
+        <plugins>
+            <plugin>
+                <artifactId>maven-dependency-plugin</artifactId>
+            </plugin>
+        </plugins>
     </build>
     <dependencies>
         <dependency>
