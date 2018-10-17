@@ -8,7 +8,7 @@
     <name>my-app</name>
     <url>http://maven.apache.org</url>
     <properties>
-        <graalvm.version>1.0.0-rc8-SNAPSHOT</graalvm.version>
+        <graalvm.version>1.0.0-rc9-SNAPSHOT</graalvm.version>
     </properties>
     <build>
         <pluginManagement>
@@ -48,7 +48,7 @@
                             <configuration>
                                 <artifactItems>
                                     <artifactItem>
-                                        <groupId>org.graalvm</groupId>
+                                        <groupId>org.graalvm.compiler</groupId>
                                         <artifactId>compiler</artifactId>
                                         <version>${graalvm.version}</version>
                                         <type>jar</type>
