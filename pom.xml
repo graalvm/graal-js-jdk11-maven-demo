@@ -67,25 +67,45 @@
                     <version>1.6.0</version>
                     <executions>
                         <execution>
+                            <id>graal</id>
                             <goals>
                                 <goal>exec</goal>
                             </goals>
+                            <configuration>
+                                <arguments>
+                                    <argument>--module-path</argument>
+                                    <!-- automatically creates the modulepath using all project dependencies, also adding the project build directory -->
+                                    <modulepath/>
+                                    <argument>-classpath</argument>
+                                    <!-- automatically creates the classpath using all project dependencies, also adding the project build directory -->
+                                    <classpath/>
+                                    <argument>-XX:+UnlockExperimentalVMOptions</argument>
+                                    <argument>-XX:+EnableJVMCI</argument>
+                                    <argument>--upgrade-module-path=${project.build.directory}/compiler-${graalvm.version}.jar</argument>
+                                    <argument>com.mycompany.app.App</argument>
+                                </arguments>
+                            </configuration>
+                        </execution>
+                        <execution>
+                            <id>hotspot</id>
+                            <goals>
+                                <goal>exec</goal>
+                            </goals>
+                            <configuration>
+                                <arguments>
+                                    <argument>--module-path</argument>
+                                    <!-- automatically creates the modulepath using all project dependencies, also adding the project build directory -->
+                                    <modulepath/>
+                                    <argument>-classpath</argument>
+                                    <!-- automatically creates the classpath using all project dependencies, also adding the project build directory -->
+                                    <classpath/>
+                                    <argument>com.mycompany.app.App</argument>
+                                </arguments>
+                            </configuration>
                         </execution>
                     </executions>
                     <configuration>
                         <executable>${JAVA_HOME}/bin/java</executable>
-                        <arguments>
-                            <argument>--module-path</argument>
-                            <!-- automatically creates the modulepath using all project dependencies, also adding the project build directory -->
-                            <modulepath/>
-                            <argument>-classpath</argument>
-                            <!-- automatically creates the classpath using all project dependencies, also adding the project build directory -->
-                            <classpath/>
-                            <argument>-XX:+UnlockExperimentalVMOptions</argument>
-                            <argument>-XX:+EnableJVMCI</argument>
-                            <argument>--upgrade-module-path=${project.build.directory}/compiler-${graalvm.version}.jar</argument>
-                            <argument>com.mycompany.app.App</argument>
-                        </arguments>
                     </configuration>
                 </plugin>
             </plugins>
@@ -118,7 +138,7 @@
             <groupId>org.graalvm.compiler</groupId>
             <artifactId>compiler</artifactId>
             <version>${graalvm.version}</version>
-            <scope>runtime</scope>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.graalvm.tools</groupId>
