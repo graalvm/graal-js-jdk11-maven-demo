@@ -87,7 +87,7 @@
                             </configuration>
                         </execution>
                         <execution>
-                            <id>hotspot</id>
+                            <id>nograal</id>
                             <goals>
                                 <goal>exec</goal>
                             </goals>
