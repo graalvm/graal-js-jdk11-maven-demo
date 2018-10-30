@@ -2,6 +2,6 @@ language: java
 
 jdk: openjdk11
 
-install: false
+install: true
 
-script: mvn package && mvn exec:exec@graal && mvn exec:exec:nograal
+script: mvn package && mvn exec:exec@graal && mvn exec:exec@nograal
