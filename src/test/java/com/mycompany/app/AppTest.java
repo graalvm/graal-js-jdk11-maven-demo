@@ -1,18 +1,15 @@
 package com.mycompany.app;
 
-import org.junit.Assert;
+import static org.junit.Assert.fail;
 import org.junit.Test;
 
-/**
- * Unit test for simple App.
- */
 public class AppTest {
-    /**
-     * Rigourous Test :-)
-     */
     @Test
-    public void testApp()
-    {
-    	Assert.assertTrue(App.get42().isNumber());
+    public void testSpeed() throws Exception {
+        long nashorn = App.benchNashornScriptEngine();
+        long graalJS = App.benchGraalPolyglotContext();
+        if (nashorn < graalJS) {
+            fail("Graal.js should be five times faster. Nashorn " + nashorn + " ms. Graal.js " + graalJS + " ms");
+        }
     }
 }

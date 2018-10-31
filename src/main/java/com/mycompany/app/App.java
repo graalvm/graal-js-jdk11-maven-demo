@@ -76,8 +76,9 @@ public class App {
         benchNashornScriptEngine();
     }
 
-    private static void benchGraalPolyglotContext() throws IOException {
+    static long benchGraalPolyglotContext() throws IOException {
         System.out.println("=== Graal.js via org.graalvm.polyglot.Context === ");
+        long took = 0;
         try (Context context = Context.create()) {
             context.eval("js", SOURCE);
             Value primesMain = context.getBindings("js").getMember("primesMain");
@@ -89,32 +90,37 @@ public class App {
             for (int i = 0; i < ITERATIONS; i++) {
                 long start = System.currentTimeMillis();
                 primesMain.execute();
-                System.out.println("iteration: " + (System.currentTimeMillis() - start));
+                took = System.currentTimeMillis() - start;
+                System.out.println("iteration: " + took);
             }
         } // context.close() is automatic
+        return took;
     }
 
-    private static void benchNashornScriptEngine() throws IOException {
+    static long benchNashornScriptEngine() throws IOException {
         System.out.println("=== Nashorn via javax.script.ScriptEngine ===");
         ScriptEngine nashornEngine = new ScriptEngineManager().getEngineByName("nashorn");
         if (nashornEngine == null) {
             System.out.println("*** Nashorn not found ***");
+            return 0;
         } else {
-            benchScriptEngineIntl(nashornEngine);
+            return benchScriptEngineIntl(nashornEngine);
         }
     }
 
-    private static void benchGraalScriptEngine() throws IOException {
+    private static long benchGraalScriptEngine() throws IOException {
         System.out.println("=== Graal.js via javax.script.ScriptEngine ===");
         ScriptEngine graaljsEngine = new ScriptEngineManager().getEngineByName("graal.js");
         if (graaljsEngine == null) {
             System.out.println("*** Graal.js not found ***");
+            return 0;
         } else {
-            benchScriptEngineIntl(graaljsEngine);
+            return benchScriptEngineIntl(graaljsEngine);
         }
     }
 
-    private static void benchScriptEngineIntl(ScriptEngine eng) throws IOException {
+    private static long benchScriptEngineIntl(ScriptEngine eng) throws IOException {
+        long took = 0L;
         try {
             eng.eval(SOURCE);
             Invocable inv = (Invocable) eng;
@@ -126,14 +132,13 @@ public class App {
             for (int i = 0; i < ITERATIONS; i++) {
                 long start = System.currentTimeMillis();
                 inv.invokeFunction("primesMain");
-                System.out.println("iteration: " + (System.currentTimeMillis() - start));
+                took = System.currentTimeMillis() - start;
+                System.out.println("iteration: " + (took));
             }
         } catch (Exception ex) {
             System.out.println(ex);
         }
+        return took;
     }
 
-    public static Value get42() {
-        return Context.create().eval("js", "42");
-    }
 }
