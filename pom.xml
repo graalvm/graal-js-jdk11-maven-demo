@@ -29,9 +29,6 @@
                         <includes>
                             <include>**/*Test.java</include>
                         </includes>
-                        <classpathDependencyExcludes>
-                            <classpathDependencyExclude>org.graalvm.compiler:compiler</classpathDependencyExclude>
-                        </classpathDependencyExcludes>
                     </configuration>
                 </plugin>
                 <plugin>
@@ -139,12 +136,6 @@
             <artifactId>js-scriptengine</artifactId>
             <version>${graalvm.version}</version>
             <scope>runtime</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.graalvm.compiler</groupId>
-            <artifactId>compiler</artifactId>
-            <version>${graalvm.version}</version>
-            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.graalvm.tools</groupId>
