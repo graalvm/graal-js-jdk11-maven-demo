@@ -9,7 +9,7 @@ public class AppTest {
         long nashorn = App.benchNashornScriptEngine();
         long graalJS = App.benchGraalPolyglotContext();
         if (nashorn < graalJS) {
-            fail("Graal.js should be five times faster. Nashorn " + nashorn + " ms. Graal.js " + graalJS + " ms");
+            fail(String.format("Graal.js (%d ms) should be faster than Nashorn (%d ms).", graalJS, nashorn));
         }
     }
 }
