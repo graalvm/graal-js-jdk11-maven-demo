@@ -9,6 +9,7 @@
     <url>http://maven.apache.org</url>
     <properties>
         <graalvm.version>1.0.0-rc8</graalvm.version>
+        <compiler.dir>${project.build.directory}/compiler</compiler.dir>
     </properties>
     <build>
         <pluginManagement>
@@ -25,7 +26,7 @@
                     <artifactId>maven-surefire-plugin</artifactId>
                     <version>2.22.1</version>
                     <configuration>
-                        <argLine>-XX:+UnlockExperimentalVMOptions -XX:+EnableJVMCI --upgrade-module-path=${project.build.directory}/compiler-${graalvm.version}.jar</argLine>
+                        <argLine>-XX:+UnlockExperimentalVMOptions -XX:+EnableJVMCI --module-path=${compiler.dir} --upgrade-module-path=${compiler.dir}/compiler.jar</argLine>
                     </configuration>
                 </plugin>
                 <plugin>
@@ -47,10 +48,26 @@
                                         <version>${graalvm.version}</version>
                                         <type>jar</type>
                                         <overWrite>true</overWrite>
-                                        <destFileName>compiler-${graalvm.version}.jar</destFileName>
+                                        <destFileName>compiler.jar</destFileName>
+                                    </artifactItem>
+                                    <artifactItem>
+                                        <groupId>org.graalvm.truffle</groupId>
+                                        <artifactId>truffle-api</artifactId>
+                                        <version>${graalvm.version}</version>
+                                        <type>jar</type>
+                                        <overWrite>true</overWrite>
+                                        <destFileName>truffle-api.jar</destFileName>
+                                    </artifactItem>
+                                    <artifactItem>
+                                        <groupId>org.graalvm.sdk</groupId>
+                                        <artifactId>graal-sdk</artifactId>
+                                        <version>${graalvm.version}</version>
+                                        <type>jar</type>
+                                        <overWrite>true</overWrite>
+                                        <destFileName>graal-sdk.jar</destFileName>
                                     </artifactItem>
                                 </artifactItems>
-                                <outputDirectory>${project.build.directory}</outputDirectory>
+                                <outputDirectory>${compiler.dir}</outputDirectory>
                             </configuration>
                         </execution>
                     </executions>
@@ -75,7 +92,7 @@
                                     <classpath/>
                                     <argument>-XX:+UnlockExperimentalVMOptions</argument>
                                     <argument>-XX:+EnableJVMCI</argument>
-                                    <argument>--upgrade-module-path=${project.build.directory}/compiler-${graalvm.version}.jar</argument>
+                                    <argument>--upgrade-module-path=${compiler.dir}/compiler.jar</argument>
                                     <argument>com.mycompany.app.App</argument>
                                 </arguments>
                             </configuration>
@@ -126,7 +143,7 @@
             <groupId>org.graalvm.truffle</groupId>
             <artifactId>truffle-api</artifactId>
             <version>${graalvm.version}</version>
-            <scope>compile</scope>
+            <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.graalvm.js</groupId>
