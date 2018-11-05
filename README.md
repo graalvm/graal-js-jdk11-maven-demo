@@ -48,10 +48,16 @@ API](https://docs.oracle.com/javase/8/docs/technotes/guides/scripting/prog_guide
 
 To Execute with Graal run
 ```
-mvn exec:exec@graal
+mvn exec:exec
 ```
 
 To Execute without Graal run
 ```
 mvn exec:exec@nograal
 ```
+
+## Running on GraalVM
+
+This project is also setup to run on GraalVM. The setup is the same except
+that your JAVA_HOME should point to a directory contain GraalVM. In this case,
+execution without Graal is not supported.
