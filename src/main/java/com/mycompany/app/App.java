@@ -71,16 +71,7 @@ public class App {
             + "}\n";
 
     public static void main(String[] args) throws Exception {
-        try {
-            benchGraalPolyglotContext();
-        } catch (LinkageError err) {
-            System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-            System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-            System.out.println("!Download GraalVM.org or use JDK11!");
-            System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-            System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-            System.exit(0);
-        }
+        benchGraalPolyglotContext();
         benchGraalScriptEngine();
         benchNashornScriptEngine();
     }

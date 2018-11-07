@@ -1,6 +1,5 @@
 package com.mycompany.app;
 
-import org.graalvm.polyglot.Context;
 import static org.junit.Assert.fail;
 import org.junit.Assume;
 import org.junit.BeforeClass;
@@ -33,10 +32,13 @@ public class AppTest {
     }
 
     private void assertGraalVMOrJDK11() {
+        if (System.getProperty("java.vm.name").contains("GraalVM")) {
+            return;
+        }
         try {
-            Context.create().close();
-        } catch (IllegalStateException ex) {
-            Assume.assumeNoException("Download GraalVM.org or use JDK11!", ex);
+            Class.forName("java.lang.Module");
+        } catch (ClassNotFoundException ex) {
+            Assume.assumeNoException("Skipping the test on regular JDK8", ex);
         }
     }
 }

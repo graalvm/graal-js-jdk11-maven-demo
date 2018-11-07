@@ -21,7 +21,6 @@ install:
         tar -xzf graalvm.tar.gz
 
 script:
-    - java -version
     - mvn clean
     - mvn package
     - mvn exec:exec
