@@ -10,6 +10,7 @@
     <properties>
         <graalvm.version>1.0.0-rc9</graalvm.version>
         <compiler.dir>${project.build.directory}/compiler</compiler.dir>
+        <debug.args>-Dignore</debug.args> <!-- to take debug.args into account -->
     </properties>
     <profiles>
         <profile>
@@ -117,6 +118,7 @@
                                         <argument>-classpath</argument>
                                         <!-- automatically creates the classpath using all project dependencies, also adding the project build directory -->
                                         <classpath/>
+                                        <argument>${debug.args}</argument>
                                         <argument>-XX:+UnlockExperimentalVMOptions</argument>
                                         <argument>-XX:+EnableJVMCI</argument>
                                         <argument>--upgrade-module-path=${compiler.dir}/compiler.jar</argument>
@@ -205,6 +207,7 @@
                                     <arguments>
                                         <argument>-classpath</argument>
                                         <classpath/>
+                                        <argument>${debug.args}</argument>
                                         <argument>com.mycompany.app.App</argument>
                                     </arguments>
                                 </configuration>
@@ -249,6 +252,7 @@
                                 <argument>-classpath</argument>
                                 <!-- automatically creates the classpath using all project dependencies, also adding the project build directory -->
                                 <classpath/>
+                                <argument>${debug.args}</argument>
                             </arguments>
                         </configuration>
                     </execution>

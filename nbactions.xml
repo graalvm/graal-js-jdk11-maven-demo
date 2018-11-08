@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actions>
+        <action>
+            <actionName>run</actionName>
+            <packagings>
+                <packaging>jar</packaging>
+            </packagings>
+            <goals>
+                <goal>process-classes</goal>
+                <goal>exec:exec</goal>
+            </goals>
+        </action>
+        <action>
+            <actionName>debug</actionName>
+            <packagings>
+                <packaging>jar</packaging>
+            </packagings>
+            <goals>
+                <goal>process-classes</goal>
+                <goal>exec:exec</goal>
+            </goals>
+            <properties>
+                <debug.args>-agentlib:jdwp=transport=dt_socket,server=n,address=${jpda.address}</debug.args>
+                <jpda.listen>true</jpda.listen>
+            </properties>
+        </action>
+    </actions>
