@@ -209,20 +209,6 @@
                                     </arguments>
                                 </configuration>
                             </execution>
-                            <execution>
-                                <id>nograal</id>
-                                <goals>
-                                    <goal>exec</goal>
-                                </goals>
-                                <configuration>
-                                    <arguments>
-                                        <argument>-classpath</argument>
-                                        <!-- automatically creates the classpath using all project dependencies, also adding the project build directory -->
-                                        <classpath/>
-                                        <argument>com.mycompany.app.App</argument>
-                                    </arguments>
-                                </configuration>
-                            </execution>
                         </executions>
                         <configuration>
                             <executable>${JAVA_HOME}/bin/java</executable>
