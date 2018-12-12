@@ -6,6 +6,7 @@ import javax.script.ScriptEngineManager;
 import javax.script.ScriptEngine;
 import javax.script.Invocable;
 import java.io.IOException;
+import org.graalvm.polyglot.Source;
 
 /**
  * Simple benchmark for Graal.js via GraalVM Polyglot Context and ScriptEngine.
@@ -80,7 +81,7 @@ public class App {
         System.out.println("=== Graal.js via org.graalvm.polyglot.Context === ");
         long took = 0;
         try (Context context = Context.create()) {
-            context.eval("js", SOURCE);
+            context.eval(Source.newBuilder("js", SOURCE, "src.js").build());
             Value primesMain = context.getBindings("js").getMember("primesMain");
             System.out.println("warming up ...");
             for (int i = 0; i < WARMUP; i++) {
