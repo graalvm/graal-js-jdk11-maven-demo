@@ -8,10 +8,18 @@ language: java
 
 jdk:
     - openjdk8
+    - openjdk9
     - openjdk11
 
 env:
     - GRAALVM_VERSION="1.0.0-rc10"
+
+matrix:
+    exclude:
+        - jdk: openjdk8
+          os: osx
+        - jdk: openjdk9
+          os: linux
 
 install:
     - |
