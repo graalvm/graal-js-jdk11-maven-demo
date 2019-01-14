@@ -11,7 +11,12 @@ jdk:
     - openjdk11
 
 env:
-    - GRAALVM_VERSION="1.0.0-rc9"
+    - GRAALVM_VERSION="1.0.0-rc10"
+
+matrix:
+    exclude:
+        - jdk: openjdk8
+          os: osx
 
 install:
     - |

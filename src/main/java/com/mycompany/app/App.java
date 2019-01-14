@@ -13,7 +13,7 @@ import org.graalvm.polyglot.Source;
  */
 public class App {
 
-    public static final int WARMUP = 10;
+    public static final int WARMUP = 15;
     public static final int ITERATIONS = 10;
     public static final String BENCHFILE = "src/bench.js";
 
