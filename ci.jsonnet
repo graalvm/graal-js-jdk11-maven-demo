@@ -1,9 +1,6 @@
 {
   local basicBuild = {
     targets: ['gate'],
-    packages: {
-      maven: '==3.6.0',
-    },
     timelimit: '00:59:59',
     run: [
       ['mvn', 'clean'],
@@ -29,6 +26,9 @@
 
   local linux = {
     capabilities+: ['linux', 'amd64'],
+    packages+: {
+      maven: '==3.3.9',
+    },
   },
 
   local darwin = {
