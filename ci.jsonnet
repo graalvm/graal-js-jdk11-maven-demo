@@ -2,7 +2,7 @@
   local basicBuild = {
     targets: ['gate'],
     packages: {
-      maven: '==3.3.9',
+      maven: '==3.6.0',
     },
     timelimit: '00:59:59',
     run: [
