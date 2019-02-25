@@ -31,9 +31,18 @@
     capabilities+: ['linux', 'amd64'],
   },
 
+  local darwin = {
+    capabilities+: ['darwin_sierra', 'amd64'],
+    environment+: {
+      MACOSX_DEPLOYMENT_TARGET: '10.11',
+    },
+  },
 
   builds: [
     basicBuild + linux + jdk8 + { name: 'linux-jdk8' },
     basicBuild + linux + jdk11 + { name: 'linux-jdk11' },
+
+    basicBuild + darwin + jdk8 + { name: 'darwin-jdk8' },
+    basicBuild + darwin + jdk11 + { name: 'darwin-jdk11' },
   ],
 }
