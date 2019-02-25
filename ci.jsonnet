@@ -1,9 +1,6 @@
 {
   local basicBuild = {
     targets: ['gate'],
-    packages: {
-      maven: '==3.3.9',
-    },
     timelimit: '00:59:59',
     run: [
       ['mvn', 'clean'],
@@ -29,11 +26,23 @@
 
   local linux = {
     capabilities+: ['linux', 'amd64'],
+    packages+: {
+      maven: '==3.3.9',
+    },
   },
 
+  local darwin = {
+    capabilities+: ['darwin_sierra', 'amd64'],
+    environment+: {
+      MACOSX_DEPLOYMENT_TARGET: '10.11',
+    },
+  },
 
   builds: [
     basicBuild + linux + jdk8 + { name: 'linux-jdk8' },
     basicBuild + linux + jdk11 + { name: 'linux-jdk11' },
+
+    basicBuild + darwin + jdk8 + { name: 'darwin-jdk8' },
+    basicBuild + darwin + jdk11 + { name: 'darwin-jdk11' },
   ],
 }
