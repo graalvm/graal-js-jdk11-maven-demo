@@ -56,6 +56,8 @@ To Execute without Graal run
 mvn exec:exec@nograal
 ```
 
+The benchmark prints the time per iteration in milliseconds, so lower values are better.
+
 ## Running on GraalVM
 
 This project is also setup to run on GraalVM. The setup is the same except
