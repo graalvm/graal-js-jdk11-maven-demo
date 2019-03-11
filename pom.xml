@@ -8,7 +8,7 @@
     <name>my-app</name>
     <url>http://maven.apache.org</url>
     <properties>
-        <graalvm.version>1.0.0-rc10</graalvm.version>
+        <graalvm.version>1.0.0-rc13</graalvm.version>
         <compiler.dir>${project.build.directory}/compiler</compiler.dir>
     </properties>
     <profiles>
