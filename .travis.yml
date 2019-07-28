@@ -9,6 +9,7 @@ language: java
 jdk:
     - openjdk8
     - openjdk11
+    - openjdk12
 
 env:
     - GRAALVM_VERSION="19.0.0"
