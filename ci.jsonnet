@@ -24,6 +24,15 @@
     },
   },
 
+  local jdk12 = {
+    run+: [
+      ['mvn', 'exec:exec@nograal'],
+    ],
+    downloads+: {
+      JAVA_HOME: { name: 'oraclejdk', version: '12.0.1+4', platformspecific: true },
+    },
+  },
+
   local linux = {
     capabilities+: ['linux', 'amd64'],
     packages+: {
@@ -41,8 +50,10 @@
   builds: [
     basicBuild + linux + jdk8 + { name: 'linux-jdk8' },
     basicBuild + linux + jdk11 + { name: 'linux-jdk11' },
+    basicBuild + linux + jdk12 + { name: 'linux-jdk12' },
 
     basicBuild + darwin + jdk8 + { name: 'darwin-jdk8' },
     basicBuild + darwin + jdk11 + { name: 'darwin-jdk11' },
+    basicBuild + darwin + jdk12 + { name: 'darwin-jdk12' },
   ],
 }
