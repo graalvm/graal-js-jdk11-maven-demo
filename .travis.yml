@@ -10,6 +10,7 @@ jdk:
     - openjdk8
     - openjdk11
     - openjdk12
+    - openjdk13
 
 env:
     - GRAALVM_VERSION="19.0.0"
