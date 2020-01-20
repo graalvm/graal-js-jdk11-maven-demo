@@ -50,10 +50,8 @@
   builds: [
     basicBuild + linux + jdk8 + { name: 'linux-jdk8' },
     basicBuild + linux + jdk11 + { name: 'linux-jdk11' },
-    basicBuild + linux + jdk12 + { name: 'linux-jdk12' },
 
     basicBuild + darwin + jdk8 + { name: 'darwin-jdk8' },
     basicBuild + darwin + jdk11 + { name: 'darwin-jdk11' },
-    basicBuild + darwin + jdk12 + { name: 'darwin-jdk12' },
   ],
 }
