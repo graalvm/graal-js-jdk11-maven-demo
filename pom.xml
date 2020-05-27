@@ -8,7 +8,7 @@
     <name>my-app</name>
     <url>http://maven.apache.org</url>
     <properties>
-        <graalvm.version>20.0.0</graalvm.version>
+        <graalvm.version>20.1.0</graalvm.version>
         <compiler.dir>${project.build.directory}/compiler</compiler.dir>
     </properties>
     <profiles>
@@ -53,7 +53,7 @@
                         <artifactId>maven-surefire-plugin</artifactId>
                         <version>2.22.1</version>
                         <configuration>
-                            <argLine>-XX:+UnlockExperimentalVMOptions -XX:+EnableJVMCI --module-path=${compiler.dir} --upgrade-module-path=${compiler.dir}/compiler.jar</argLine>
+                            <argLine>-XX:+UnlockExperimentalVMOptions -XX:+EnableJVMCI --module-path=${compiler.dir} --upgrade-module-path=${compiler.dir}/compiler.jar:${compiler.dir}/compiler-management.jar</argLine>
                         </configuration>
                     </plugin>
                     <plugin>
@@ -76,6 +76,14 @@
                                             <type>jar</type>
                                             <overWrite>true</overWrite>
                                             <destFileName>compiler.jar</destFileName>
+                                        </artifactItem>
+                                        <artifactItem>
+                                            <groupId>org.graalvm.compiler</groupId>
+                                            <artifactId>compiler-management</artifactId>
+                                            <version>${graalvm.version}</version>
+                                            <type>jar</type>
+                                            <overWrite>true</overWrite>
+                                            <destFileName>compiler-management.jar</destFileName>
                                         </artifactItem>
                                         <artifactItem>
                                             <groupId>org.graalvm.truffle</groupId>
@@ -119,7 +127,7 @@
                                         <classpath/>
                                         <argument>-XX:+UnlockExperimentalVMOptions</argument>
                                         <argument>-XX:+EnableJVMCI</argument>
-                                        <argument>--upgrade-module-path=${compiler.dir}/compiler.jar</argument>
+                                        <argument>--upgrade-module-path=${compiler.dir}/compiler.jar:${compiler.dir}/compiler-management.jar</argument>
                                         <argument>com.mycompany.app.App</argument>
                                     </arguments>
                                 </configuration>
