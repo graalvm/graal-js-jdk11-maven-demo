@@ -12,7 +12,7 @@ jdk:
     - openjdk12
 
 env:
-    - GRAALVM_VERSION="20.1.0"
+    - GRAALVM_VERSION="20.2.0"
 
 matrix:
     exclude:
