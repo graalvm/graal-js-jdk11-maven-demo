@@ -119,7 +119,7 @@ public class App {
 
     static long benchGraalPolyglotContext() throws IOException {
         System.out.println("=== Graal.js via org.graalvm.polyglot.Context === ");
-        long took = 0;
+        long sum = 0;
         try (Context context = Context.create()) {
             context.eval(Source.newBuilder("js", SOURCE, "src.js").build());
             Value primesMain = context.getBindings("js").getMember("primesMain");
@@ -131,11 +131,12 @@ public class App {
             for (int i = 0; i < ITERATIONS; i++) {
                 long start = System.currentTimeMillis();
                 primesMain.execute();
-                took = System.currentTimeMillis() - start;
+                long took = System.currentTimeMillis() - start;
+                sum += took;
                 System.out.println("iteration: " + took);
             }
         } // context.close() is automatic
-        return took;
+        return sum;
     }
 
     static long benchNashornScriptEngine() throws IOException {
@@ -161,7 +162,7 @@ public class App {
     }
 
     private static long benchScriptEngineIntl(ScriptEngine eng) throws IOException {
-        long took = 0L;
+        long sum = 0L;
         try {
             eng.eval(SOURCE);
             Invocable inv = (Invocable) eng;
@@ -173,13 +174,14 @@ public class App {
             for (int i = 0; i < ITERATIONS; i++) {
                 long start = System.currentTimeMillis();
                 inv.invokeFunction("primesMain");
-                took = System.currentTimeMillis() - start;
+                long took = System.currentTimeMillis() - start;
+                sum += took;
                 System.out.println("iteration: " + (took));
             }
         } catch (Exception ex) {
             System.out.println(ex);
         }
-        return took;
+        return sum;
     }
 
 }
