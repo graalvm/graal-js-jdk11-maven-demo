@@ -8,9 +8,10 @@
     <name>my-app</name>
     <url>http://maven.apache.org</url>
     <properties>
-        <graalvm.version>20.3.0</graalvm.version>
+        <graalvm.version>21.0.0.2</graalvm.version>
         <compiler.dir>${project.build.directory}/compiler</compiler.dir>
     </properties>
+
     <profiles>
         <profile>
             <id>jdk11</id>
