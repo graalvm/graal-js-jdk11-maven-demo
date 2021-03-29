@@ -31,7 +31,7 @@ script:
     - mvn package
     - mvn exec:exec
     - if [[ "$TRAVIS_JDK_VERSION" == "openjdk11" ]]; then mvn exec:exec@nograal; fi
-    - export JAVA_HOME="$(pwd)/graalvm-ce-$GRAALVM_VERSION" && if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then export JAVA_HOME="$JAVA_HOME/Contents/Home"; fi
+    - export JAVA_HOME="$(pwd)/graalvm-ce-java11-$GRAALVM_VERSION" && if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then export JAVA_HOME="$JAVA_HOME/Contents/Home"; fi
     - mvn clean
     - mvn package
     - mvn exec:exec
