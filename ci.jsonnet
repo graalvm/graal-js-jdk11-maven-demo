@@ -20,7 +20,7 @@
       ['mvn', 'exec:exec@nograal'],
     ],
     downloads+: {
-      JAVA_HOME: { name: 'oraclejdk', version: '11+20', platformspecific: true },
+      JAVA_HOME: { name: 'oraclejdk', version: '11.0.11+9', platformspecific: true },
     },
   },
 
