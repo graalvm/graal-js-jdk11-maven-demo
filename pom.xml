@@ -8,7 +8,7 @@
     <name>my-app</name>
     <url>http://maven.apache.org</url>
     <properties>
-        <graalvm.version>22.0.0.2</graalvm.version>
+        <graalvm.version>22.1.0</graalvm.version>
         <compiler.dir>${project.build.directory}/compiler</compiler.dir>
     </properties>
 
@@ -145,74 +145,6 @@
                                         <modulepath/>
                                         <argument>-classpath</argument>
                                         <!-- automatically creates the classpath using all project dependencies, also adding the project build directory -->
-                                        <classpath/>
-                                        <argument>com.mycompany.app.App</argument>
-                                    </arguments>
-                                </configuration>
-                            </execution>
-                        </executions>
-                        <configuration>
-                            <executable>${JAVA_HOME}/bin/java</executable>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-        <profile>
-            <id>jdk8</id>
-            <activation>
-                <jdk>1.8</jdk>
-                <file>
-                    <missing>${java.home}/lib/truffle/truffle-api.jar</missing>
-                </file>
-            </activation>
-            <dependencies>
-                <dependency>
-                    <groupId>org.graalvm.sdk</groupId>
-                    <artifactId>graal-sdk</artifactId>
-                    <version>${graalvm.version}</version>
-                    <scope>compile</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.graalvm.js</groupId>
-                    <artifactId>js</artifactId>
-                    <version>${graalvm.version}</version>
-                    <scope>runtime</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.graalvm.js</groupId>
-                    <artifactId>js-scriptengine</artifactId>
-                    <version>${graalvm.version}</version>
-                    <scope>runtime</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.graalvm.tools</groupId>
-                    <artifactId>profiler</artifactId>
-                    <version>${graalvm.version}</version>
-                    <scope>runtime</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.graalvm.tools</groupId>
-                    <artifactId>chromeinspector</artifactId>
-                    <version>${graalvm.version}</version>
-                    <scope>runtime</scope>
-                </dependency>
-            </dependencies>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.codehaus.mojo</groupId>
-                        <artifactId>exec-maven-plugin</artifactId>
-                        <version>1.6.0</version>
-                        <executions>
-                            <execution>
-                                <id>default-cli</id>
-                                <goals>
-                                    <goal>exec</goal>
-                                </goals>
-                                <configuration>
-                                    <arguments>
-                                        <argument>-classpath</argument>
                                         <classpath/>
                                         <argument>com.mycompany.app.App</argument>
                                     </arguments>
