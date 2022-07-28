@@ -35,3 +35,7 @@ script:
     - mvn clean
     - mvn package
     - mvn exec:exec
+
+cache:
+  directories:
+  - $HOME/.m2
